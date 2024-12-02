@@ -1,17 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 const gameSlice = createSlice({
   name: 'game',
   initialState: {
-    player1: { name: '', wins: 0 },
-    player2: { name: '', wins: 0 },
+    player1: {name: '', wins: 0},
+    player2: {name: '', wins: 0},
     currentWinner: '',
     winDifference: 0,
     isGameScreenVisit: false,
   },
   reducers: {
     setPlayerNames: (state, action) => {
-      const { player1Name, player2Name } = action.payload;
+      const {player1Name, player2Name} = action.payload;
       state.player1.name = player1Name;
       state.player2.name = player2Name;
       state.isGameScreenVisit = true;
@@ -19,10 +19,14 @@ const gameSlice = createSlice({
     addWin: (state, action) => {
       const player = action.payload;
       state[player].wins += 1;
-      const { player1, player2 } = state;
+      const {player1, player2} = state;
       state.winDifference = Math.abs(player1.wins - player2.wins);
-      state.currentWinner =
-        player1.wins > player2.wins ? player1.name : player2.name;
+      if (state.winDifference === 0) {
+        state.currentWinner = 'Tie';
+      } else {
+        state.currentWinner =
+          player1.wins > player2.wins ? player1.name : player2.name;
+      }
     },
     saveGame: state => {
       console.log('Game saved:', {
@@ -33,8 +37,8 @@ const gameSlice = createSlice({
       });
     },
     resetGame: state => {
-      state.player1 = { name: '', wins: 0 };
-      state.player2 = { name: '', wins: 0 };
+      state.player1 = {name: '', wins: 0};
+      state.player2 = {name: '', wins: 0};
       state.currentWinner = '';
       state.winDifference = 0;
       state.isGameScreenVisit = false;
@@ -42,5 +46,5 @@ const gameSlice = createSlice({
   },
 });
 
-export const { setPlayerNames, addWin, saveGame, resetGame } = gameSlice.actions;
+export const {setPlayerNames, addWin, saveGame, resetGame} = gameSlice.actions;
 export default gameSlice.reducer;

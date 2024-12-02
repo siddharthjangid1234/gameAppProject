@@ -49,7 +49,8 @@ export default StyleSheet.create({
   },
   mainViewStyle: {
     marginHorizontal: scale(20),
-    flex: 0.9,
+    flex: 0.95,
+    backgroundColor: Colors.AppBgColor,
   },
   seperator: {
     height: verticalScale(1),

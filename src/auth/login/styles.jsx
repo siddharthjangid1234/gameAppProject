@@ -14,11 +14,13 @@ export default StyleSheet.create({
     padding: moderateScale(8),
     borderRadius: 5,
     marginBottom: verticalScale(20),
+    backgroundColor: Colors.white,
   },
   mainViewStyle: {
     flex: 0.92,
     paddingHorizontal: scale(20),
     marginTop: verticalScale(30),
+    backgroundColor: Colors.AppBgColor,
   },
   headingStyle: {
     fontSize: 14,

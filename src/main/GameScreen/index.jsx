@@ -1,16 +1,12 @@
 import React from 'react';
-import {Alert, Text, View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import { Alert, Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import CustomButton from '../../Components/CustomButton';
 import CustomNavBar from '../../Components/CustomNavBar';
-import {addWin, resetGame, saveGame} from '../../store/Slice/gameSlice';
+import { addWin, resetGame, saveGame } from '../../store/Slice/gameSlice';
 import styles from './styles';
-import {useNavigation} from '@react-navigation/native';
-import NavigationRoutes from '../../routes/NavigationRoutes';
-import { navigationRef } from '../../navigation/navigationRef';
 
 const GameScreen = () => {
-  const navigation = useNavigation();
   const {player1, player2, currentWinner, winDifference} = useSelector(
     state => state.game,
   );
@@ -75,7 +71,7 @@ const GameScreen = () => {
           Win difference: {winDifference}
         </Text>
         <Text style={styles.playerNameStyle}>
-          Current winner: {currentWinner}
+          Current winner: {currentWinner || 'No Winner'}
         </Text>
       </View>
 
